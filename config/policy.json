@@ -1,0 +1,64 @@
+{
+  "internal_domain": "acme.example",
+  "blocklisted_domains": [
+    "evil-corp.example",
+    "paste-drop.example"
+  ],
+  "high_impact_tools": [
+    "send_email",
+    "http_post",
+    "delete_file"
+  ],
+  "internal_send_needs_approval": false,
+  "risk_base": {
+    "read": 5,
+    "write": 30,
+    "egress": 40,
+    "destructive": 50
+  },
+  "risk_per_deny": 40,
+  "risk_per_approval": 20,
+  "lookalike_homoglyphs": [
+    [
+      "rn",
+      "m"
+    ],
+    [
+      "vv",
+      "w"
+    ],
+    [
+      "0",
+      "o"
+    ],
+    [
+      "1",
+      "l"
+    ],
+    [
+      "3",
+      "e"
+    ],
+    [
+      "5",
+      "s"
+    ]
+  ],
+  "lookalike_min_name_length": 4,
+  "secret_path_patterns": [
+    "*.env",
+    "*/.env",
+    "secrets/*",
+    "*/secrets/*",
+    "*.pem",
+    "*id_rsa*",
+    "*credentials*"
+  ],
+  "confidential_path_patterns": [
+    "reports/*",
+    "*/reports/*",
+    "*financial*",
+    "*payroll*"
+  ],
+  "require_signed_tools": false
+}

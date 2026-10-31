@@ -1,0 +1,65 @@
+{
+  "_about": "Names and plain-English help for each policy rule, shown in the console.",
+  "rules": [
+    {
+      "id": "R0",
+      "title": "Unknown or malformed call",
+      "help": "The call names a tool that doesn't exist, has odd arguments, or Warden itself failed. Blocked to be safe."
+    },
+    {
+      "id": "R1",
+      "title": "Tool definition tampered",
+      "help": "The tool's description changed after it was approved, or it hides orders to the AI."
+    },
+    {
+      "id": "R2",
+      "title": "Beyond task permission",
+      "help": "Your request doesn't need this kind of tool, so the agent may not use it."
+    },
+    {
+      "id": "R3",
+      "title": "Secret leaving",
+      "help": "The outgoing data contains a secret, even if it's reversed, encoded or split up."
+    },
+    {
+      "id": "R4",
+      "title": "Destination came from untrusted content",
+      "help": "The address or link came from something the agent read, not from you."
+    },
+    {
+      "id": "R5",
+      "title": "Target came from untrusted content",
+      "help": "The file to change or delete came from something the agent read, not from you."
+    },
+    {
+      "id": "R6",
+      "title": "Secret read not asked for",
+      "help": "The agent tried to open a secrets file you never mentioned."
+    },
+    {
+      "id": "R7",
+      "title": "Confidential data to outside",
+      "help": "Confidential lines would go to an address outside the company."
+    },
+    {
+      "id": "R8",
+      "title": "Blocklisted or lookalike domain",
+      "help": "The destination is on the blocklist or imitates the company's domain."
+    },
+    {
+      "id": "R9",
+      "title": "Destination of unknown origin",
+      "help": "Nobody ever mentioned this destination; the agent made it up."
+    },
+    {
+      "id": "R10",
+      "title": "High-impact action",
+      "help": "This action sends data outside the company or can't be undone, so a person decides."
+    },
+    {
+      "id": "R11",
+      "title": "Echoes injected text",
+      "help": "The outgoing text repeats an instruction that was planted for the AI."
+    }
+  ]
+}

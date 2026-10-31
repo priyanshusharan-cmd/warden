@@ -1,0 +1,50 @@
+{
+  "_about": "Least-privilege intents: if the user's request matches the pattern, these tools are allowed.",
+  "intents": [
+    {
+      "pattern": "\\b(?:e-?mails?|inbox|mail|messages?)\\b",
+      "tools": [
+        "read_email",
+        "read_inbox"
+      ]
+    },
+    {
+      "pattern": "\\b(?:files?|documents?|docs?|reports?|notes|drive|folder)\\b",
+      "tools": [
+        "list_files",
+        "read_file"
+      ]
+    },
+    {
+      "pattern": "\\b(?:web|website|page|url|browse|link|site|https?://)",
+      "tools": [
+        "browse"
+      ]
+    },
+    {
+      "pattern": "\\b(?:send|forward|reply|e-?mail (?:it|this|them) to|mail it)\\b",
+      "tools": [
+        "send_email"
+      ]
+    },
+    {
+      "pattern": "\\b(?:post|upload|webhook|notify|publish)\\b",
+      "tools": [
+        "http_post"
+      ]
+    },
+    {
+      "pattern": "\\b(?:delete|remove|clean ?up|erase)\\b",
+      "tools": [
+        "delete_file"
+      ]
+    },
+    {
+      "pattern": "\\b(?:weather|forecast|temperature)\\b",
+      "tools": [
+        "get_weather"
+      ]
+    }
+  ],
+  "negation": "\\b(?:don'?t|do not|never|without|no need to|not)\\s+(?:\\w+\\s+){0,2}?"
+}

@@ -1,0 +1,59 @@
+{
+  "_about": "Evidence patterns (Python regular expressions). They explain why content looks dangerous; the policy decides on provenance.",
+  "instruction_cues": [
+    "\\bignore (?:all |any )?(?:previous|prior|above|earlier) (?:instructions|messages)",
+    "\\b(?:ai|assistant|agent|bot)\\s*[:,-]",
+    "\\bsystem\\s*(?:note|notice|override|message)\\s*:",
+    "\\bnew instructions?\\b",
+    "\\byou must\\b",
+    "\\bdo not (?:tell|inform|mention)",
+    "\\bwithout (?:telling|asking|informing)",
+    "\\badmin(?:istrator)? (?:request|override|mode)",
+    "\\burgent(?:ly)?\\b.*\\b(?:send|forward|share|delete|post)\\b",
+    "\\b(?:send|forward|share|email|post|upload)\\b.*\\b(?:api key|password|credential|secret|token|\\.env)",
+    "\\bbhej(?:o|do|dena)?\\b",
+    "भेज(?:ो|ें|दो|िए)",
+    "पासवर्ड|कुंजी|एपीआई",
+    "ಕಳುಹಿಸಿ",
+    "ಪಾಸ್‌?ವರ್ಡ್|ಕೀ"
+  ],
+  "secret_patterns": [
+    "\\bsk-[A-Za-z0-9-]{16,}",
+    "(?i)\\b(?:password|passwd|pwd|api[_-]?key|secret|token)\\s*[=:]\\s*(?=\\S*\\d)\\S{8,}",
+    "-----BEGIN [A-Z ]*PRIVATE KEY-----",
+    "\\bAKIA[0-9A-Z]{16}\\b"
+  ],
+  "description_red_flags": [
+    {
+      "pattern": "<!--|-->|<important>|<system>",
+      "flags": "i",
+      "reason": "hidden markup in description"
+    },
+    {
+      "pattern": "\\b(?:before|after) (?:using|calling|any call)",
+      "flags": "i",
+      "reason": "tells the model to do extra steps"
+    },
+    {
+      "pattern": "\\b(?:do not|don't) (?:tell|mention|show)",
+      "flags": "i",
+      "reason": "asks the model to hide actions from the user"
+    },
+    {
+      "pattern": "\\.env\\b|id_rsa|\\bsecrets/|credentials",
+      "flags": "i",
+      "reason": "references secret files"
+    },
+    {
+      "pattern": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}",
+      "flags": "",
+      "reason": "contains an email address"
+    },
+    {
+      "pattern": "https?://[^\\s\\\"'<>)]+",
+      "flags": "",
+      "reason": "contains a URL"
+    }
+  ],
+  "poisoned_description_min_flags": 2
+}

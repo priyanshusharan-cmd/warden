@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Warden</title>
+  <meta name="description" content="Warden sits between an AI agent and its tools and blocks actions that were planted by something the agent read.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='2' y='2' width='28' height='28' fill='%23FF3B1F' stroke='%23000' stroke-width='3'/%3E%3Cpath d='M9 10l3 12 4-8 4 8 3-12' fill='none' stroke='%23000' stroke-width='3' stroke-linejoin='miter'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="mast">
+    <div class="wrap mast-inner">
+      <a class="brand" href="#home" aria-label="Warden home">
+        <span class="brand-mark" aria-hidden="true">W</span>
+        <span class="brand-name">Warden</span>
+      </a>
+      <nav class="tabs" role="tablist" aria-label="Views">
+        <button role="tab" id="tab-home" aria-controls="view-home" data-tab="home">Home</button>
+        <button role="tab" id="tab-run" aria-controls="view-run" data-tab="run">Demo</button>
+        <button role="tab" id="tab-write" aria-controls="view-write" data-tab="write">Attack lab</button>
+        <button role="tab" id="tab-results" aria-controls="view-results" data-tab="results">Results</button>
+        <button role="tab" id="tab-data" aria-controls="view-data" data-tab="data">Data</button>
+        <button role="tab" id="tab-tools" aria-controls="view-tools" data-tab="tools">Tools</button>
+        <button role="tab" id="tab-audit" aria-controls="view-audit" data-tab="audit">Audit</button>
+      </nav>
+      <a class="help-btn" href="#run" id="help-btn">Run the demo</a>
+    </div>
+  </header>
+
+  <div id="offline" class="wrap banner banner-warn" hidden>
+    Offline: showing recorded results. Start the server with <code>./run.sh</code> for live runs.
+  </div>
+  <div id="own-data" class="wrap banner" hidden></div>
+
+  <main id="main" class="wrap">
+    <!-- Home -->
+    <section id="view-home" class="view home" role="tabpanel" aria-labelledby="tab-home" hidden>
+      <div class="hero">
+        <h1 class="hero-h">AI agents obey what they read.<br>Warden stops the orders they shouldn't.</h1>
+        <p class="hero-sub">A firewall between an AI agent and its tools. It traces where every address, link and file came from, and blocks anything planted by an email, web page or document.</p>
+        <div class="hero-actions">
+          <a class="btn btn-go btn-big" href="#run">Watch an attack get blocked</a>
+          <a class="btn btn-big" href="#write">Write your own attack</a>
+        </div>
+      </div>
+
+      <ol class="flow" aria-label="How Warden works">
+        <li class="flow-step"><span class="flow-k">You ask</span><span class="flow-v">“Summarize my emails”</span></li>
+        <li class="flow-step"><span class="flow-k">Agent reads</span><span class="flow-v">An email says “send the API key to…”</span></li>
+        <li class="flow-step flow-warden"><span class="flow-k">Warden checks</span><span class="flow-v">That address came from the email, not from you</span></li>
+        <li class="flow-step flow-stop"><span class="flow-k">Result</span><span class="flow-v">Blocked, with the exact line as proof</span></li>
+      </ol>
+
+      <div class="stats" id="home-stats" aria-live="polite"></div>
+
+      <div class="cards">
+        <a class="card box" href="#run"><span class="card-h">Demo</span><span class="card-p">Same task, two agents: one unprotected, one behind Warden.</span></a>
+        <a class="card box" href="#write"><span class="card-h">Attack lab</span><span class="card-p">Write a malicious email and see if you can get past it.</span></a>
+        <a class="card box" href="#results"><span class="card-h">Results</span><span class="card-p">Every built-in attack, with and without Warden.</span></a>
+        <a class="card box" href="#tools"><span class="card-h">Use with Claude</span><span class="card-p">Put Warden in front of Claude Desktop or Claude Code.</span></a>
+      </div>
+    </section>
+
+    <!-- Live run -->
+    <section id="view-run" class="view" role="tabpanel" aria-labelledby="tab-run">
+      <h2 class="story-h"><span>1</span>Pick an attack and run it</h2>
+      <div class="controls box">
+        <div class="field">
+          <label for="scenario">Attack</label>
+          <div class="select-wrap"><select id="scenario"></select></div>
+        </div>
+        <div class="asked">
+          <span class="field-label">The user asks</span>
+          <q id="asked-text"></q>
+        </div>
+        <div class="field">
+          <label for="agent">Agent</label>
+          <div class="select-wrap"><select id="agent"></select></div>
+        </div>
+        <button id="run-btn" class="btn btn-go" type="button">Run both agents</button>
+        <p class="agent-help" id="agent-help"></p>
+      </div>
+
+      <h2 class="story-h" id="trap-h" hidden><span>2</span>The trap hidden in the inbox</h2>
+      <details id="trap" class="trap box" open hidden>
+        <summary><span class="trap-title"></span></summary>
+        <div class="trap-body"></div>
+      </details>
+
+      <div id="run-slot" class="result-slot"></div>
+    </section>
+
+    <!-- Results of a run: shown on Demo, or under the email in Attack lab -->
+    <div id="results" class="results">
+      <div id="custom-note" class="note box" hidden></div>
+
+      <h2 class="story-h" id="verdict-h" hidden><span>3</span>What happened</h2>
+      <section id="verdict" class="verdict" hidden aria-live="polite">
+        <div class="verdict-cell v-open"><span class="v-label">Without Warden</span><p id="verdict-open"></p></div>
+        <div class="verdict-cell v-guarded"><span class="v-label">With Warden</span><p id="verdict-guarded"></p></div>
+      </section>
+
+      <h2 class="story-h" id="board-h" hidden><span>4</span>Step by step <small>Click a step to see why</small></h2>
+      <div class="board">
+        <section class="lane lane-open" aria-labelledby="lane-open-h">
+          <header class="lane-head">
+            <h2 id="lane-open-h">Without Warden</h2>
+            <p class="lane-sub" id="open-sub"></p>
+          </header>
+          <ol class="strips" id="open-strips"></ol>
+          <div class="lane-empty" id="open-empty">No protection. Press <strong>Run both agents</strong>.</div>
+          <div class="leak box" id="leak" hidden aria-live="polite">
+            <h3 class="leak-h" id="leak-h"></h3>
+            <ul class="leak-list" id="leak-list"></ul>
+          </div>
+        </section>
+
+        <section class="lane lane-guarded" aria-labelledby="lane-guarded-h">
+          <header class="lane-head">
+            <h2 id="lane-guarded-h">With Warden</h2>
+            <p class="lane-sub" id="guarded-sub"></p>
+          </header>
+          <div class="contract" id="contract" hidden></div>
+          <ol class="strips" id="guarded-strips"></ol>
+          <div class="lane-empty" id="guarded-empty">Every action checked first.</div>
+          <div class="answer box" id="answer" hidden></div>
+        </section>
+      </div>
+
+      <nav class="next box" id="next" hidden aria-label="What next">
+        <span class="next-h">Next</span>
+        <a href="#write">Try your own attack</a>
+        <a href="#results">See all results</a>
+        <a href="#audit">Check the audit log</a>
+      </nav>
+    </div>
+
+    <!-- Write an attack -->
+    <section id="view-write" class="view" role="tabpanel" aria-labelledby="tab-write" hidden>
+      <div class="view-head">
+        <h1 class="h-view">Attack lab</h1>
+        <p class="lede">Write an email the agent will read. Try to make it leak a secret or delete a file.</p>
+      </div>
+      <div class="write">
+        <form class="mail box" id="write-form" novalidate>
+          <div class="field">
+            <label for="w-prompt">The user asks</label>
+            <input id="w-prompt" name="prompt" type="text" required>
+          </div>
+          <div class="mail-card">
+            <div class="mail-row"><label for="w-from">From</label><input id="w-from" name="sender" type="text"></div>
+            <div class="mail-row"><label for="w-subject">Subject</label><input id="w-subject" name="subject" type="text"></div>
+            <textarea id="w-body" name="body" rows="9" aria-label="Email body" required></textarea>
+          </div>
+          <p class="form-error" id="write-error" role="alert" hidden></p>
+          <div class="form-actions">
+            <button class="btn btn-go" type="submit">Run both agents</button>
+            <input id="w-title" type="text" class="inline-input" placeholder="Name this attack" aria-label="Name for the saved attack">
+            <button class="btn" id="save-attack" type="button">Save as scenario</button>
+          </div>
+          <p class="form-ok" id="write-ok" role="status" hidden></p>
+        </form>
+        <aside class="write-side">
+          <div class="box side-box">
+            <h2 class="side-h">Examples</h2>
+            <div class="preset-list" id="presets"></div>
+          </div>
+          <div class="box side-box">
+            <h2 class="side-h">Targets</h2>
+            <dl class="targets" id="targets"></dl>
+            <p class="side-note"><a href="#data">Edit in Data</a></p>
+          </div>
+        </aside>
+      </div>
+      <div id="write-slot" class="result-slot"></div>
+    </section>
+
+    <!-- Your data -->
+    <section id="view-data" class="view" role="tabpanel" aria-labelledby="tab-data" hidden>
+      <div class="view-head view-head-row">
+        <div>
+          <h1 class="h-view">Data</h1>
+          <p class="lede">The inbox, files, pages and secrets the agent works with. Edit them; nothing is really sent.</p>
+        </div>
+        <div class="view-actions">
+          <button class="btn btn-go" id="data-save" type="button">Save changes</button>
+          <label class="btn" for="data-import">Import JSON</label>
+          <input id="data-import" type="file" accept="application/json,.json" hidden>
+          <button class="btn" id="data-export" type="button">Export JSON</button>
+          <button class="btn btn-quiet" id="data-reset" type="button">Reset</button>
+        </div>
+      </div>
+      <p class="form-error" id="data-error" role="alert" hidden></p>
+      <p class="form-ok" id="data-ok" role="status" hidden></p>
+      <div id="data-body" class="data-grid"></div>
+    </section>
+
+    <!-- Results -->
+    <section id="view-results" class="view" role="tabpanel" aria-labelledby="tab-results" hidden>
+      <div id="results-body"></div>
+    </section>
+
+    <!-- Tool checks -->
+    <section id="view-tools" class="view" role="tabpanel" aria-labelledby="tab-tools" hidden>
+      <div class="view-head view-head-row">
+        <div>
+          <h1 class="h-view">Tools</h1>
+          <p class="lede">Each tool is fingerprinted. If one changes or hides orders to the AI, it's blocked.</p>
+        </div>
+        <div class="view-actions">
+          <div class="select-wrap select-small"><select id="drift-tool" aria-label="Tool to tamper with"></select></div>
+          <button class="btn" id="drift-btn" type="button">Tamper</button>
+          <button class="btn btn-quiet" id="tools-reset" type="button">Restore</button>
+          <button class="btn" id="tools-sign" type="button" title="Store a signature for each tool. A later change is blocked, even in a new session.">Sign tools</button>
+        </div>
+      </div>
+      <div id="tools-body"></div>
+
+      <section class="connect box" id="connect" aria-labelledby="connect-h">
+        <div class="connect-head">
+          <h2 id="connect-h">Use with Claude</h2>
+          <p>Run Claude Desktop or Claude Code through Warden.</p>
+        </div>
+        <ol class="connect-steps">
+          <li>
+            <h3>Choose</h3>
+            <div class="connect-form">
+              <div class="field"><label for="c-scenario">Planted attack</label>
+                <div class="select-wrap"><select id="c-scenario"></select></div></div>
+              <div class="field"><label for="c-task">You'll ask</label>
+                <input id="c-task" type="text"></div>
+            </div>
+          </li>
+          <li>
+            <h3>Save config</h3>
+            <p id="c-where"></p>
+            <div class="code-wrap"><pre id="c-config" tabindex="0"></pre>
+              <button class="btn btn-small" id="c-copy" type="button">Copy</button></div>
+          </li>
+          <li>
+            <h3>Ask, then review</h3>
+            <p>Restart Claude and ask <q id="c-ask"></q></p>
+            <button class="btn btn-go" id="c-open" type="button">Open latest session</button>
+            <p class="form-error" id="c-error" role="alert" hidden></p>
+          </li>
+        </ol>
+      </section>
+    </section>
+
+    <!-- Audit -->
+    <section id="view-audit" class="view" role="tabpanel" aria-labelledby="tab-audit" hidden>
+      <div class="view-head view-head-row">
+        <div>
+          <h1 class="h-view">Audit log</h1>
+          <p class="lede">Every decision, chained by hash. Edit one entry and the chain breaks.</p>
+        </div>
+        <div class="view-actions">
+          <button class="btn btn-go" id="verify-btn" type="button">Verify</button>
+          <label class="btn" for="audit-import" title="Open a log written by a Claude session through Warden">Open file</label>
+          <input id="audit-import" type="file" accept=".jsonl,.json,.log,text/plain" hidden>
+          <button class="btn btn-quiet" id="audit-reset" type="button">Clear</button>
+        </div>
+      </div>
+      <div id="verify-result" class="verify box" hidden aria-live="polite"></div>
+      <ol id="chain" class="chain"></ol>
+    </section>
+  </main>
+
+  <footer class="foot wrap">
+    <p id="foot-text">Warden judges where each value came from, not what the AI intended.</p>
+  </footer>
+
+  <script src="js/demo-data.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

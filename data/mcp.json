@@ -1,0 +1,12 @@
+{
+  "_about": "How the MCP proxy classifies unknown tools from their names and argument names (Python regular expressions).",
+  "capability_patterns": {
+    "destructive": "\\b(?:delete|remove|drop|destroy|erase|wipe|truncate)\\b",
+    "egress": "\\b(?:send|post|upload|email|mail|publish|notify|webhook|share|forward|http)\\b",
+    "write": "\\b(?:write|create|update|edit|modify|move|rename|commit|push)\\b"
+  },
+  "destination_param": "^(?:to|cc|bcc|recipients?|email|address|url|uri|endpoint|webhook|host|domain)$",
+  "target_param": "^(?:path|file|filename|target|id|name|key)$",
+  "payload_param": "^(?:body|content|data|message|text|notes?|payload|query|subject|value|url)$",
+  "blocked_error_code": -32001
+}
