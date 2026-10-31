@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 32" width="1200" height="32" role="img" aria-labelledby="t d">
+  <title id="t">Divider</title>
+  <desc id="d">Every tool call goes through Warden.</desc>
+  <defs>
+    <style>
+      .h { font-family: "Archivo Black", "Archivo", "Arial Black", "Helvetica Neue", Arial, sans-serif; font-weight: 900; fill: #000; }
+      .b { font-family: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #000; }
+      .m { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #000; }
+      @keyframes slide { from { transform: translateX(0); } to { transform: translateX(40px); } }
+      .tape { animation: slide 1.4s linear infinite; }
+      @media (prefers-reduced-motion: reduce) { * { animation: none !important; opacity: 1 !important; transform: none !important; } }
+    </style>
+  </defs>
+  <rect width="1200" height="32" fill="#F2F2EF"/>
+<clipPath id="clip"><rect x="0" y="2" width="1200" height="28"/></clipPath>
+  <rect y="2" width="1200" height="28" fill="#FFD600"/>
+  <g clip-path="url(#clip)"><g class="tape"><path d="M-40 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M0 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M40 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M80 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M120 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M160 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M200 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M240 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M280 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M320 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M360 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M400 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M440 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M480 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M520 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M560 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M600 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M640 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M680 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M720 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M760 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M800 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M840 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M880 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M920 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M960 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M1000 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M1040 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M1080 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M1120 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M1160 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M1200 2 h20 l-20 28 h-20 Z" fill="#000"/><path d="M1240 2 h20 l-20 28 h-20 Z" fill="#000"/></g></g>
+  <rect y="0" width="1200" height="2" fill="#000"/><rect y="30" width="1200" height="2" fill="#000"/>
+  <rect x="420" y="2" width="360" height="28" fill="#000"/>
+  <text x="600" y="21" text-anchor="middle" class="m" style="font-size:12px; letter-spacing:2.5px; fill:#FFD600">EVERY TOOL CALL GOES THROUGH WARDEN</text>
+</svg>

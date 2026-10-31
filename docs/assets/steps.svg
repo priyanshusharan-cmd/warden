@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 290" width="1200" height="290" role="img" aria-labelledby="t d">
+  <title id="t">How Warden works</title>
+  <desc id="d">Four steps: label every text as trusted or untrusted, trace every value to its source, decide with twelve rules where the strictest wins, and prove each decision in a hash-chained audit log.</desc>
+  <defs>
+    <style>
+      .h { font-family: "Archivo Black", "Archivo", "Arial Black", "Helvetica Neue", Arial, sans-serif; font-weight: 900; fill: #000; }
+      .b { font-family: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #000; }
+      .m { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #000; }
+      @keyframes s0 { 0%, 0.00% { opacity: 0; } 2.50%, 21.88% { opacity: 1; } 24.38%, 100% { opacity: 0; } }
+      .s0 { animation: s0 8.0s infinite; opacity: 0; }
+      @keyframes s1 { 0%, 25.00% { opacity: 0; } 27.50%, 46.88% { opacity: 1; } 49.38%, 100% { opacity: 0; } }
+      .s1 { animation: s1 8.0s infinite; opacity: 0; }
+      @keyframes s2 { 0%, 50.00% { opacity: 0; } 52.50%, 71.88% { opacity: 1; } 74.38%, 100% { opacity: 0; } }
+      .s2 { animation: s2 8.0s infinite; opacity: 0; }
+      @keyframes s3 { 0%, 75.00% { opacity: 0; } 77.50%, 96.88% { opacity: 1; } 99.38%, 100% { opacity: 0; } }
+      .s3 { animation: s3 8.0s infinite; opacity: 0; }
+      @keyframes prog { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+      .prog { transform-box: fill-box; transform-origin: left center; animation: prog 8s linear infinite; }
+      @media (prefers-reduced-motion: reduce) { * { animation: none !important; opacity: 1 !important; transform: none !important; } }
+    </style>
+  </defs>
+  <rect width="1200" height="290" fill="#F2F2EF"/>
+<rect x="39" y="36" width="264" height="196" fill="#000"/><rect x="33" y="30" width="264" height="196" fill="#FFFFFF" stroke="#000" stroke-width="2" />
+  <rect class="s0" x="34" y="31" width="262" height="194" fill="#FFD600"/>
+  <rect x="53" y="50" width="38" height="38" fill="#000"/>
+  <text x="72" y="75" text-anchor="middle" class="h" style="font-size:16px; fill:#fff">01</text>
+  <text x="105" y="74" class="m" style="font-size:12px; letter-spacing:2px">LABEL</text>
+  <text x="53" y="130" class="h" style="font-size:26px; letter-spacing:-.5px">Label it</text>
+  <text x="53" y="162" class="b" style="font-size:15px; fill:#222">Each text is trusted (you</text>
+  <text x="53" y="184" class="b" style="font-size:15px; fill:#222">typed it) or untrusted (a</text>
+  <text x="53" y="206" class="b" style="font-size:15px; fill:#222">tool returned it).</text>
+  <path d="M306 120 L316 128 L306 136 Z" fill="#000"/>
+  <rect x="327" y="36" width="264" height="196" fill="#000"/><rect x="321" y="30" width="264" height="196" fill="#FFFFFF" stroke="#000" stroke-width="2" />
+  <rect class="s1" x="322" y="31" width="262" height="194" fill="#FFD600"/>
+  <rect x="341" y="50" width="38" height="38" fill="#000"/>
+  <text x="360" y="75" text-anchor="middle" class="h" style="font-size:16px; fill:#fff">02</text>
+  <text x="393" y="74" class="m" style="font-size:12px; letter-spacing:2px">TRACE</text>
+  <text x="341" y="130" class="h" style="font-size:26px; letter-spacing:-.5px">Trace it</text>
+  <text x="341" y="162" class="b" style="font-size:15px; fill:#222">Every address, file and</text>
+  <text x="341" y="184" class="b" style="font-size:15px; fill:#222">payload is traced back to</text>
+  <text x="341" y="206" class="b" style="font-size:15px; fill:#222">its source.</text>
+  <path d="M594 120 L604 128 L594 136 Z" fill="#000"/>
+  <rect x="615" y="36" width="264" height="196" fill="#000"/><rect x="609" y="30" width="264" height="196" fill="#FFFFFF" stroke="#000" stroke-width="2" />
+  <rect class="s2" x="610" y="31" width="262" height="194" fill="#FFD600"/>
+  <rect x="629" y="50" width="38" height="38" fill="#000"/>
+  <text x="648" y="75" text-anchor="middle" class="h" style="font-size:16px; fill:#fff">03</text>
+  <text x="681" y="74" class="m" style="font-size:12px; letter-spacing:2px">DECIDE</text>
+  <text x="629" y="130" class="h" style="font-size:26px; letter-spacing:-.5px">Decide</text>
+  <text x="629" y="162" class="b" style="font-size:15px; fill:#222">Twelve rules vote. The</text>
+  <text x="629" y="184" class="b" style="font-size:15px; fill:#222">strictest wins. Any error</text>
+  <text x="629" y="206" class="b" style="font-size:15px; fill:#222">means block.</text>
+  <path d="M882 120 L892 128 L882 136 Z" fill="#000"/>
+  <rect x="903" y="36" width="264" height="196" fill="#000"/><rect x="897" y="30" width="264" height="196" fill="#FFFFFF" stroke="#000" stroke-width="2" />
+  <rect class="s3" x="898" y="31" width="262" height="194" fill="#FFD600"/>
+  <rect x="917" y="50" width="38" height="38" fill="#000"/>
+  <text x="936" y="75" text-anchor="middle" class="h" style="font-size:16px; fill:#fff">04</text>
+  <text x="969" y="74" class="m" style="font-size:12px; letter-spacing:2px">PROVE</text>
+  <text x="917" y="130" class="h" style="font-size:26px; letter-spacing:-.5px">Prove it</text>
+  <text x="917" y="162" class="b" style="font-size:15px; fill:#222">The exact source line goes</text>
+  <text x="917" y="184" class="b" style="font-size:15px; fill:#222">into a hash-chained audit</text>
+  <text x="917" y="206" class="b" style="font-size:15px; fill:#222">log.</text>
+  <rect x="33" y="252" width="1128" height="8" fill="#FFFFFF" stroke="#000" stroke-width="2"/>
+  <rect class="prog" x="34" y="253" width="1126" height="6" fill="#000"/>
+</svg>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 350" width="1200" height="350" role="img" aria-labelledby="t d">
+  <title id="t">Run Warden</title>
+  <desc id="d">Running ./run.sh starts Warden at http://127.0.0.1:8000. Running ./test.sh runs 73 tests, all OK.</desc>
+  <defs>
+    <style>
+      .h { font-family: "Archivo Black", "Archivo", "Arial Black", "Helvetica Neue", Arial, sans-serif; font-weight: 900; fill: #000; }
+      .b { font-family: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif; fill: #000; }
+      .m { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace; fill: #000; }
+      @keyframes t1 { 0%, 16.67% { opacity: 0; } 17.92%, 95.00% { opacity: 1; } 96.25%, 100% { opacity: 0; } }
+      .t1 { animation: t1 12.0s infinite; opacity: 0; }
+      @keyframes t4 { 0%, 56.67% { opacity: 0; } 57.92%, 95.00% { opacity: 1; } 96.25%, 100% { opacity: 0; } }
+      .t4 { animation: t4 12.0s infinite; opacity: 0; }
+      @keyframes t5 { 0%, 60.00% { opacity: 0; } 61.25%, 95.00% { opacity: 1; } 96.25%, 100% { opacity: 0; } }
+      .t5 { animation: t5 12.0s infinite; opacity: 0; }
+      @keyframes cur { 0%, 60.83% { opacity: 0; } 61.25%, 95.00% { opacity: 1; } 95.42%, 100% { opacity: 0; } }
+      .cur { animation: cur 12.0s infinite; opacity: 0; }
+      @keyframes blink { 50% { fill: transparent; } }
+      @media (prefers-reduced-motion: reduce) { * { animation: none !important; opacity: 1 !important; transform: none !important; } }
+    </style>
+  </defs>
+  <rect width="1200" height="350" fill="#F2F2EF"/>
+<rect x="30" y="30" width="1146" height="300" fill="#000"/><rect x="24" y="24" width="1146" height="300" fill="#111111" stroke="#000" stroke-width="2" />
+  <rect x="24" y="24" width="1146" height="44" fill="#FFFFFF" stroke="#000" stroke-width="2"/>
+  <rect x="44" y="40" width="12" height="12" fill="#E5341B" stroke="#000" stroke-width="2"/>
+  <rect x="64" y="40" width="12" height="12" fill="#FFD600" stroke="#000" stroke-width="2"/>
+  <rect x="84" y="40" width="12" height="12" fill="#0E8A5F" stroke="#000" stroke-width="2"/>
+  <text x="597" y="51" text-anchor="middle" class="m" style="font-size:13px; letter-spacing:1.5px">warden — zsh</text>
+  <defs><clipPath id="c0"><rect x="56" y="92" height="28" width="0"><animate attributeName="width" dur="12.0s" repeatCount="indefinite" keyTimes="0;0.050;0.125;0.95;0.96;1" values="0;0;120;120;0;0"/></rect></clipPath><clipPath id="c2"><rect x="56" y="172" height="28" width="0"><animate attributeName="width" dur="12.0s" repeatCount="indefinite" keyTimes="0;0.283;0.350;0.95;0.96;1" values="0;0;130;130;0;0"/></rect></clipPath><clipPath id="c3"><rect x="56" y="204" height="28" width="0"><animate attributeName="width" dur="12.0s" repeatCount="indefinite" keyTimes="0;0.375;0.542;0.95;0.96;1" values="0;0;710;710;0;0"/></rect></clipPath></defs>
+  <text x="58" y="112" class="m" style="font-size:16px; fill:#F2F2EF" clip-path="url(#c0)"><tspan fill="#FFD600">$</tspan> ./run.sh</text>
+  <text x="58" y="144" class="m t1" style="font-size:16px; fill:#B0B0B0">Warden is running at <tspan fill="#FFD600" text-decoration="underline">http://127.0.0.1:8000</tspan>  (Ctrl+C to stop)</text>
+  <text x="58" y="192" class="m" style="font-size:16px; fill:#F2F2EF" clip-path="url(#c2)"><tspan fill="#FFD600">$</tspan> ./test.sh</text>
+  <text x="58" y="224" class="m" style="font-size:16px; fill:#F2F2EF" clip-path="url(#c3)">.........................................................................</text>
+  <text x="58" y="256" class="m t4" style="font-size:16px; fill:#B0B0B0">Ran 73 tests in 2.277s</text>
+  <text x="58" y="288" class="m t5" style="font-size:16px; fill:#B0B0B0"><tspan fill="#5FD3A6" font-weight="700">OK</tspan></text>
+  <g class="cur"><rect x="84" y="274" width="10" height="18" fill="#F2F2EF" style="animation: blink 1s steps(1) infinite"/></g>
+</svg>
