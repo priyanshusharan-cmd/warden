@@ -1,46 +1,42 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 240" width="960" height="240" role="img" aria-labelledby="t d">
-  <title id="t">How Warden decides</title>
-  <desc id="d">Every tool call passes through Warden, which returns allow, ask or block.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 190" width="1200" height="190" role="img" aria-labelledby="t d">
+  <title id="t">How an attack is stopped</title>
+  <desc id="d">You ask for a summary. The agent reads an email that gives it orders. Warden sees the address came from the email, not from you. The call is blocked with the exact line as proof.</desc>
   <defs>
     <style>
-      .node { font: 600 13px -apple-system, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif; fill: #cbd5e1; letter-spacing: 1.6px; }
-      .small { font: 400 13px -apple-system, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif; fill: #94a3b8; }
-      .verdict { font: 600 13px -apple-system, "SF Pro Text", "Segoe UI", sans-serif; letter-spacing: 1.6px; }
-      .rail { stroke: #263047; stroke-width: 1.5; fill: none; }
-      .live { stroke: #a78bfa; stroke-width: 1.5; fill: none; stroke-dasharray: 4 10; animation: march 1.4s linear infinite; }
-      @keyframes march { to { stroke-dashoffset: -28; } }
-      @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+      .h { font-family: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif; font-weight: 700; fill: #000; font-size: 17px; }
+      .m { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; letter-spacing: 1.8px; fill: #000; }
+      .s { opacity: .25; animation: on 8s infinite; }
+      .s2 { animation-delay: 1s; } .s3 { animation-delay: 2s; } .s4 { animation-delay: 3s; }
+      .fill { opacity: 0; animation: on 8s infinite; animation-delay: 2s; }
+      .fill4 { animation-delay: 3s; }
+      @keyframes on { 0% { opacity: .25; } 6%, 85% { opacity: 1; } 95%, 100% { opacity: .25; } }
+      .fill { animation-name: fillon; }
+      @keyframes fillon { 0% { opacity: 0; } 6%, 85% { opacity: 1; } 95%, 100% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) { .s, .fill { animation: none; opacity: 1; } }
     </style>
   </defs>
 
-  <rect x="8" y="88" width="168" height="64" rx="10" fill="#0f1422" stroke="#334155" stroke-width="1.5"/>
-  <text x="92" y="116" text-anchor="middle" class="node">AGENT</text>
-  <text x="92" y="136" text-anchor="middle" class="small">requests a tool call</text>
+  <rect width="1200" height="190" fill="#F2F2EF"/>
+  <!-- shadow + frame -->
+  <rect x="30" y="34" width="1144" height="124" fill="#000"/>
+  <rect x="24" y="28" width="1144" height="124" fill="#FFFFFF" stroke="#000" stroke-width="2"/>
 
-  <path class="rail" d="M176 120 H352"/>
-  <path class="live" d="M176 120 H352"/>
+  <!-- tints -->
+  <rect class="fill" x="596" y="29" width="286" height="122" fill="#FFD600"/>
+  <rect class="fill fill4" x="882" y="29" width="285" height="122" fill="#DDF5E9"/>
 
-  <rect x="352" y="60" width="256" height="120" rx="14" fill="#0f1422" stroke="#4c3d8f" stroke-width="1.5"/>
-  <text x="480" y="98" text-anchor="middle" class="node" style="fill:#c4b5fd">WARDEN</text>
-  <text x="480" y="122" text-anchor="middle" class="small">trace every value to its source</text>
-  <text x="480" y="142" text-anchor="middle" class="small">12 rules, strictest verdict wins</text>
-  <text x="480" y="162" text-anchor="middle" class="small">every decision logged</text>
+  <!-- dividers with arrows -->
+  <g stroke="#000" stroke-width="2" fill="#FFFFFF">
+    <line x1="310" y1="28" x2="310" y2="152"/>
+    <line x1="596" y1="28" x2="596" y2="152"/>
+    <line x1="882" y1="28" x2="882" y2="152"/>
+    <path d="M310 80 L320 90 L310 100"/>
+    <path d="M596 80 L606 90 L596 100"/>
+    <path d="M882 80 L892 90 L882 100"/>
+  </g>
 
-  <path class="rail" d="M608 120 C648 120 648 46 688 46"/>
-  <path class="rail" d="M608 120 H688"/>
-  <path class="rail" d="M608 120 C648 120 648 194 688 194"/>
-  <path class="live" d="M608 120 C648 120 648 46 688 46"/>
-  <path class="live" d="M608 120 C648 120 648 194 688 194"/>
-
-  <rect x="688" y="20" width="264" height="52" rx="10" fill="#0a1f17" stroke="#34d399" stroke-width="1"/>
-  <text x="708" y="51" class="verdict" style="fill:#34d399">ALLOW</text>
-  <text x="800" y="51" class="small">source is you, or the call is clearly safe</text>
-
-  <rect x="688" y="94" width="264" height="52" rx="10" fill="#1f1a0a" stroke="#fbbf24" stroke-width="1"/>
-  <text x="708" y="125" class="verdict" style="fill:#fbbf24">ASK</text>
-  <text x="800" y="125" class="small">a human decides</text>
-
-  <rect x="688" y="168" width="264" height="52" rx="10" fill="#1f0d10" stroke="#f87171" stroke-width="1"/>
-  <text x="708" y="199" class="verdict" style="fill:#f87171">BLOCK</text>
-  <text x="800" y="199" class="small">injected, leaking or unknown</text>
+  <g class="s"><text x="48" y="64" class="m">YOU ASK</text><text x="48" y="100" class="h">“Summarize my emails”</text></g>
+  <g class="s s2"><text x="334" y="64" class="m">AGENT READS</text><text x="334" y="100" class="h">An email says “send the</text><text x="334" y="122" class="h">API key to…”</text></g>
+  <g class="s s3"><text x="620" y="64" class="m">WARDEN CHECKS</text><text x="620" y="100" class="h">That address came from</text><text x="620" y="122" class="h">the email, not from you</text></g>
+  <g class="s s4"><text x="906" y="64" class="m">RESULT</text><text x="906" y="100" class="h">Blocked, with the exact</text><text x="906" y="122" class="h">line as proof</text></g>
 </svg>

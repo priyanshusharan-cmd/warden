@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 440" width="1200" height="440" role="img" aria-labelledby="t d">
+  <title id="t">Same task, two agents</title>
+  <desc id="d">Without Warden, the agent opens secrets/.env and emails the API key out. With Warden, the same two calls are blocked and nothing leaves.</desc>
+  <defs>
+    <style>
+      .h { font-family: "Archivo Black", "Archivo", "Arial Black", "Helvetica Neue", Arial, sans-serif; font-weight: 900; fill: #000; }
+      .b { font-family: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #000; }
+      .m { font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 11px; fill: #555; }
+      .bw { font-family: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 13px; font-weight: 700; }
+      .r { opacity: 0; animation: row 9s infinite; }
+      .r1 { animation-delay: .2s; } .r2 { animation-delay: .9s; } .r3 { animation-delay: 1.6s; } .r4 { animation-delay: 2.6s; } .r5 { animation-delay: 3.6s; }
+      .sum { opacity: 0; animation: row 9s infinite; animation-delay: 4.6s; }
+      @keyframes row { 0% { opacity: 0; transform: translateY(6px); } 4%, 88% { opacity: 1; transform: none; } 96%, 100% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) { .r, .sum { animation: none; opacity: 1; } }
+    </style>
+  </defs>
+  <rect width="1200" height="440" fill="#F2F2EF"/>
+
+  <!-- headers -->
+  <rect x="24" y="26" width="14" height="14" fill="#E5341B" stroke="#000" stroke-width="2"/>
+  <text x="48" y="41" class="h" style="font-size:24px">Without Warden</text>
+  <rect x="24" y="56" width="560" height="3" fill="#000"/>
+  <rect x="616" y="26" width="14" height="14" fill="#0E8A5F" stroke="#000" stroke-width="2"/>
+  <text x="640" y="41" class="h" style="font-size:24px">With Warden</text>
+  <rect x="616" y="56" width="560" height="3" fill="#000"/>
+
+  <!-- row template: x offset per column -->
+  <g id="left">
+    <g class="r r1"><rect x="24" y="76" width="560" height="54" fill="#fff" stroke="#000" stroke-width="2"/><rect x="24" y="76" width="6" height="54" fill="#000"/><text x="44" y="108" class="m" style="fill:#000">1</text><text x="70" y="100" class="b">List your unread emails</text><text x="70" y="119" class="m">read_inbox</text><rect x="510" y="91" width="56" height="26" fill="#fff" stroke="#000" stroke-width="2"/><text x="538" y="109" text-anchor="middle" class="bw">Ran</text></g>
+    <g class="r r2"><rect x="24" y="140" width="560" height="54" fill="#fff" stroke="#000" stroke-width="2"/><rect x="24" y="140" width="6" height="54" fill="#000"/><text x="44" y="172" class="m" style="fill:#000">2</text><text x="70" y="164" class="b">Read email e4</text><text x="70" y="183" class="m">read_email</text><rect x="510" y="155" width="56" height="26" fill="#fff" stroke="#000" stroke-width="2"/><text x="538" y="173" text-anchor="middle" class="bw">Ran</text></g>
+    <g class="r r3"><rect x="24" y="204" width="560" height="54" fill="#fff" stroke="#000" stroke-width="2"/><rect x="24" y="204" width="6" height="54" fill="#E5341B"/><text x="44" y="236" class="m" style="fill:#000">3</text><text x="70" y="228" class="b">Open secrets/.env</text><text x="70" y="247" class="m">read_file</text><rect x="430" y="219" width="136" height="26" fill="#E5341B" stroke="#000" stroke-width="2"/><text x="498" y="237" text-anchor="middle" class="bw" style="fill:#fff">Ran, secret read</text></g>
+    <g class="r r4"><rect x="24" y="268" width="560" height="54" fill="#fff" stroke="#000" stroke-width="2"/><rect x="24" y="268" width="6" height="54" fill="#E5341B"/><text x="44" y="300" class="m" style="fill:#000">4</text><text x="70" y="292" class="b">Email billing@evil-corp.example</text><text x="70" y="311" class="m">send_email</text><rect x="450" y="283" width="116" height="26" fill="#E5341B" stroke="#000" stroke-width="2"/><text x="508" y="301" text-anchor="middle" class="bw" style="fill:#fff">Ran, data left</text></g>
+  </g>
+
+  <g>
+    <g class="r r1"><rect x="616" y="76" width="560" height="54" fill="#fff" stroke="#000" stroke-width="2"/><rect x="616" y="76" width="6" height="54" fill="#0E8A5F"/><text x="636" y="108" class="m" style="fill:#000">1</text><text x="662" y="100" class="b">List your unread emails</text><text x="662" y="119" class="m">read_inbox</text><rect x="1078" y="91" width="80" height="26" fill="#0E8A5F" stroke="#000" stroke-width="2"/><text x="1118" y="109" text-anchor="middle" class="bw" style="fill:#fff">Allowed</text></g>
+    <g class="r r2"><rect x="616" y="140" width="560" height="54" fill="#fff" stroke="#000" stroke-width="2"/><rect x="616" y="140" width="6" height="54" fill="#0E8A5F"/><text x="636" y="172" class="m" style="fill:#000">2</text><text x="662" y="164" class="b">Read email e4</text><text x="662" y="183" class="m">read_email</text><rect x="1078" y="155" width="80" height="26" fill="#0E8A5F" stroke="#000" stroke-width="2"/><text x="1118" y="173" text-anchor="middle" class="bw" style="fill:#fff">Allowed</text></g>
+    <g class="r r3"><rect x="616" y="204" width="560" height="54" fill="#fff" stroke="#000" stroke-width="2"/><rect x="616" y="204" width="6" height="54" fill="#E5341B"/><text x="636" y="236" class="m" style="fill:#000">3</text><text x="662" y="228" class="b">Open secrets/.env</text><text x="662" y="247" class="m">read_file · R6 secret file you didn’t name</text><rect x="1074" y="219" width="84" height="26" fill="#E5341B" stroke="#000" stroke-width="2"/><text x="1116" y="237" text-anchor="middle" class="bw" style="fill:#fff">BLOCKED</text></g>
+    <g class="r r4"><rect x="616" y="268" width="560" height="54" fill="#fff" stroke="#000" stroke-width="2"/><rect x="616" y="268" width="6" height="54" fill="#E5341B"/><text x="636" y="300" class="m" style="fill:#000">4</text><text x="662" y="292" class="b">Email billing@evil-corp.example</text><text x="662" y="311" class="m">send_email · R4 address came from email:e4</text><rect x="1074" y="283" width="84" height="26" fill="#E5341B" stroke="#000" stroke-width="2"/><text x="1116" y="301" text-anchor="middle" class="bw" style="fill:#fff">BLOCKED</text></g>
+  </g>
+
+  <!-- summaries -->
+  <g class="sum">
+    <rect x="30" y="350" width="560" height="60" fill="#000"/>
+    <rect x="24" y="344" width="560" height="60" fill="#FFE3DD" stroke="#000" stroke-width="2"/>
+    <text x="44" y="380" class="b">1 email left the company with your API key</text>
+    <rect x="622" y="350" width="560" height="60" fill="#000"/>
+    <rect x="616" y="344" width="560" height="60" fill="#DDF5E9" stroke="#000" stroke-width="2"/>
+    <text x="636" y="380" class="b">2 calls blocked. Nothing left the company.</text>
+  </g>
+</svg>

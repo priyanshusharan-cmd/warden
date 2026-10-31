@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 170" width="1200" height="170" role="img" aria-labelledby="t d">
+  <title id="t">Benchmark results</title>
+  <desc id="d">Attacks work 100% of the time without Warden and 0% with it. 100% of normal tasks still finish.</desc>
+  <defs>
+    <style>
+      .n { font-family: "Archivo Black", "Archivo", "Arial Black", "Helvetica Neue", Arial, sans-serif; font-weight: 900; font-size: 46px; letter-spacing: -1px; }
+      .l { font-family: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 15px; fill: #333; }
+      .bar { transform-box: fill-box; transform-origin: left center; animation: grow 5s cubic-bezier(.6,0,.2,1) infinite; }
+      .d2 { animation-delay: .3s; } .d3 { animation-delay: .6s; }
+      @keyframes grow { 0% { transform: scaleX(0); } 30%, 90% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+      @media (prefers-reduced-motion: reduce) { .bar { animation: none; } }
+    </style>
+  </defs>
+  <rect width="1200" height="170" fill="#F2F2EF"/>
+
+  <g>
+    <rect x="30" y="30" width="360" height="116" fill="#000"/>
+    <rect x="24" y="24" width="360" height="116" fill="#fff" stroke="#000" stroke-width="2"/>
+    <text x="44" y="80" class="n" style="fill:#E5341B">100%</text>
+    <text x="44" y="106" class="l">attacks work without Warden</text>
+    <rect x="44" y="120" width="320" height="6" fill="#EAEAE6"/>
+    <rect class="bar" x="44" y="120" width="320" height="6" fill="#E5341B"/>
+  </g>
+  <g>
+    <rect x="426" y="30" width="360" height="116" fill="#000"/>
+    <rect x="420" y="24" width="360" height="116" fill="#fff" stroke="#000" stroke-width="2"/>
+    <text x="440" y="80" class="n" style="fill:#0E8A5F">0%</text>
+    <text x="440" y="106" class="l">attacks work with Warden</text>
+    <rect x="440" y="120" width="320" height="6" fill="#EAEAE6"/>
+    <rect class="bar d2" x="440" y="120" width="2" height="6" fill="#0E8A5F"/>
+  </g>
+  <g>
+    <rect x="822" y="30" width="360" height="116" fill="#000"/>
+    <rect x="816" y="24" width="360" height="116" fill="#fff" stroke="#000" stroke-width="2"/>
+    <text x="836" y="80" class="n" style="fill:#0E8A5F">100%</text>
+    <text x="836" y="106" class="l">normal tasks still finish</text>
+    <rect x="836" y="120" width="320" height="6" fill="#EAEAE6"/>
+    <rect class="bar d3" x="836" y="120" width="320" height="6" fill="#0E8A5F"/>
+  </g>
+</svg>
