@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="1200" height="360" role="img" aria-labelledby="t d">
+  <title id="t">Warden</title>
+  <desc id="d">Animated banner: a firewall between an AI agent and its tools.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0e1a"/>
+      <stop offset="1" stop-color="#121029"/>
+    </linearGradient>
+    <linearGradient id="word" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#f1f5f9"/>
+      <stop offset="1" stop-color="#c4b5fd"/>
+    </linearGradient>
+    <linearGradient id="scan" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#a78bfa" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#a78bfa" stop-opacity="0"/>
+    </linearGradient>
+    <style>
+      .word { font: 700 88px -apple-system, "SF Pro Display", "Segoe UI", Helvetica, Arial, sans-serif; fill: url(#word); letter-spacing: -2px; }
+      .tag  { font: 400 24px -apple-system, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif; fill: #94a3b8; }
+      .cap  { font: 600 13px -apple-system, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif; fill: #64748b; letter-spacing: 2.4px; }
+      .node { font: 600 13px -apple-system, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif; fill: #cbd5e1; letter-spacing: 1.6px; }
+      .note { font: 400 13px -apple-system, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif; fill: #94a3b8; }
+      .packet { animation: travel 4.8s cubic-bezier(.4,0,.2,1) infinite; }
+      .p2 { animation-delay: -2.4s; }
+      .scan { animation: sweep 3.6s ease-in-out infinite alternate; }
+      .glow { animation: breathe 3.6s ease-in-out infinite; }
+      .deny { animation: deny 4.8s ease-in-out infinite; }
+      @keyframes travel { 0% { transform: translateX(0); opacity: 0; } 12% { opacity: 1; } 40% { transform: translateX(120px); opacity: 1; } 46%, 100% { transform: translateX(120px); opacity: 0; } }
+      @keyframes sweep { from { transform: translateX(-24px); } to { transform: translateX(24px); } }
+      @keyframes breathe { 0%, 100% { opacity: .25; } 50% { opacity: .6; } }
+      @keyframes deny { 0%, 40% { opacity: 0; } 52%, 88% { opacity: 1; } 100% { opacity: 0; } }
+      @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+    </style>
+  </defs>
+
+  <rect width="1200" height="360" rx="20" fill="url(#bg)"/>
+  <rect x="0.5" y="0.5" width="1199" height="359" rx="20" fill="none" stroke="#1e2433"/>
+
+  <!-- left: wordmark -->
+  <g transform="translate(64 78)">
+    <path d="M26 0 L52 9 V32 C52 54 40 68 26 75 C12 68 0 54 0 32 V9 Z" fill="none" stroke="#a78bfa" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M14 38 L23 47 L40 29" fill="none" stroke="#a78bfa" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="152" y="162" class="word">Warden</text>
+  <text x="66" y="222" class="tag">The AI can be fooled. Warden can’t.</text>
+  <text x="66" y="300" class="cap">FIREWALL FOR AI AGENTS</text>
+
+  <!-- right: flow, agent to tools through the gate -->
+  <g>
+    <rect x="640" y="150" width="84" height="60" rx="10" fill="#0f1422" stroke="#334155" stroke-width="1.5"/>
+    <text x="682" y="186" text-anchor="middle" class="node">AGENT</text>
+
+    <line x1="724" y1="180" x2="812" y2="180" stroke="#263047" stroke-width="1.5"/>
+    <line x1="960" y1="180" x2="1040" y2="180" stroke="#263047" stroke-width="1.5"/>
+    <circle class="packet" r="5" cx="724" cy="180" fill="#a78bfa"/>
+    <circle class="packet p2" r="5" cx="724" cy="180" fill="#a78bfa"/>
+
+    <rect x="812" y="112" width="148" height="136" rx="14" fill="#0f1422" stroke="#4c3d8f" stroke-width="1.5"/>
+    <g class="scan"><rect x="812" y="112" width="148" height="136" rx="14" fill="url(#scan)"/></g>
+    <text x="886" y="168" text-anchor="middle" class="node" style="fill:#c4b5fd">WARDEN</text>
+    <text x="886" y="192" text-anchor="middle" class="note">trace · rule · decide</text>
+
+    <rect x="1040" y="150" width="112" height="60" rx="10" fill="#0f1422" stroke="#334155" stroke-width="1.5"/>
+    <text x="1096" y="186" text-anchor="middle" class="node">TOOLS</text>
+
+    <g class="deny">
+      <line x1="886" y1="262" x2="886" y2="290" stroke="#f87171" stroke-width="1.5" stroke-dasharray="3 3"/>
+      <circle cx="886" cy="302" r="11" fill="none" stroke="#f87171" stroke-width="1.5"/>
+      <path d="M881 297 L891 307 M891 297 L881 307" stroke="#f87171" stroke-width="1.5" stroke-linecap="round"/>
+    </g>
+    <text x="886" y="336" text-anchor="middle" class="note">unsafe calls stop here</text>
+  </g>
+</svg>

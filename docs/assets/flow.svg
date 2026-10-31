@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 240" width="960" height="240" role="img" aria-labelledby="t d">
+  <title id="t">How Warden decides</title>
+  <desc id="d">Every tool call passes through Warden, which returns allow, ask or block.</desc>
+  <defs>
+    <style>
+      .node { font: 600 13px -apple-system, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif; fill: #cbd5e1; letter-spacing: 1.6px; }
+      .small { font: 400 13px -apple-system, "SF Pro Text", "Segoe UI", Helvetica, Arial, sans-serif; fill: #94a3b8; }
+      .verdict { font: 600 13px -apple-system, "SF Pro Text", "Segoe UI", sans-serif; letter-spacing: 1.6px; }
+      .rail { stroke: #263047; stroke-width: 1.5; fill: none; }
+      .live { stroke: #a78bfa; stroke-width: 1.5; fill: none; stroke-dasharray: 4 10; animation: march 1.4s linear infinite; }
+      @keyframes march { to { stroke-dashoffset: -28; } }
+      @media (prefers-reduced-motion: reduce) { * { animation: none !important; } }
+    </style>
+  </defs>
+
+  <rect x="8" y="88" width="168" height="64" rx="10" fill="#0f1422" stroke="#334155" stroke-width="1.5"/>
+  <text x="92" y="116" text-anchor="middle" class="node">AGENT</text>
+  <text x="92" y="136" text-anchor="middle" class="small">requests a tool call</text>
+
+  <path class="rail" d="M176 120 H352"/>
+  <path class="live" d="M176 120 H352"/>
+
+  <rect x="352" y="60" width="256" height="120" rx="14" fill="#0f1422" stroke="#4c3d8f" stroke-width="1.5"/>
+  <text x="480" y="98" text-anchor="middle" class="node" style="fill:#c4b5fd">WARDEN</text>
+  <text x="480" y="122" text-anchor="middle" class="small">trace every value to its source</text>
+  <text x="480" y="142" text-anchor="middle" class="small">12 rules, strictest verdict wins</text>
+  <text x="480" y="162" text-anchor="middle" class="small">every decision logged</text>
+
+  <path class="rail" d="M608 120 C648 120 648 46 688 46"/>
+  <path class="rail" d="M608 120 H688"/>
+  <path class="rail" d="M608 120 C648 120 648 194 688 194"/>
+  <path class="live" d="M608 120 C648 120 648 46 688 46"/>
+  <path class="live" d="M608 120 C648 120 648 194 688 194"/>
+
+  <rect x="688" y="20" width="264" height="52" rx="10" fill="#0a1f17" stroke="#34d399" stroke-width="1"/>
+  <text x="708" y="51" class="verdict" style="fill:#34d399">ALLOW</text>
+  <text x="800" y="51" class="small">source is you, or the call is clearly safe</text>
+
+  <rect x="688" y="94" width="264" height="52" rx="10" fill="#1f1a0a" stroke="#fbbf24" stroke-width="1"/>
+  <text x="708" y="125" class="verdict" style="fill:#fbbf24">ASK</text>
+  <text x="800" y="125" class="small">a human decides</text>
+
+  <rect x="688" y="168" width="264" height="52" rx="10" fill="#1f0d10" stroke="#f87171" stroke-width="1"/>
+  <text x="708" y="199" class="verdict" style="fill:#f87171">BLOCK</text>
+  <text x="800" y="199" class="small">injected, leaking or unknown</text>
+</svg>
